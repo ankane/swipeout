@@ -1,8 +1,8 @@
 # SwipeOut :surfer:
 
-Swipe-to-delete goodness for Javascript
+Swipe-to-delete goodness for the mobile web
 
-Created for the [Instacart](https://www.instacart.com/) mobile app
+Handcrafted at [Instacart](https://www.instacart.com/)
 
 [View demo](http://ankane.github.com/swipeout/demo.html)
 
