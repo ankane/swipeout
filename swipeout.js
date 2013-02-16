@@ -1,8 +1,8 @@
 /*
- * @preserve SwipeOut: Swipe-to-delete goodness for Javascript.
- *
- * @version 0.1.0
- * @license MIT License (see LICENSE.txt)
+ * SwipeOut
+ * version 0.1.0
+ * https://github.com/ankane/swipeout
+ * Licensed under the MIT license.
  */
 
 /*jslint browser: true, indent: 2 */
