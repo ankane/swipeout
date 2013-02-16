@@ -46,7 +46,7 @@ Just over **3kb total** when minified and gzipped
 
 ```html
 <script src="path/to/hammer.js"></script>
-<script src="path/to/swipeout.min.js"></script>
+<script src="path/to/swipeout.js"></script>
 ```
 
 ## Customize
