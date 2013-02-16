@@ -162,7 +162,7 @@ function SwipeOut(listEl, options) {
 
   // style list items
   // TODO insert only once per page and clean up
-  addCss(".swipe-out li { position: relative; }");
+  addCss(".swipe-out > li { position: relative; }");
 
   // style list
   listEl.style.overflow = "hidden";
