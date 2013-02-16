@@ -38,11 +38,11 @@ $("#list li").on("delete", function(evt) {
 
 ## Install
 
-SwipeOut depends on [Hammer.js](http://eightmedia.github.com/hammer.js/).  Include the following two files on your website:
+SwipeOut requires [Hammer.js](http://eightmedia.github.com/hammer.js/).  Include the following two files on your website:
 
 [Hammer.js](https://raw.github.com/EightMedia/hammer.js/master/hammer.js) and [SwipeOut](https://raw.github.com/ankane/swipeout/master/swipeout.js)
 
-Just over 3kb total when minified and gzipped
+Just over **3kb total** when minified and gzipped
 
 ```html
 <script src="path/to/hammer.js"></script>
