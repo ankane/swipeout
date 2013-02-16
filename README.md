@@ -4,7 +4,7 @@ Swipe-to-delete goodness for Javascript
 
 Created for the [Instacart](https://www.instacart.com/) mobile app
 
-### [View demo](http://ankane.github.com/swipeout/demo.html)
+[View demo](http://ankane.github.com/swipeout/demo.html)
 
 ## Usage
 
