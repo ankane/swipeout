@@ -17,7 +17,8 @@ function SwipeOut(listEl, options) {
     preventSwipe = false,
     hammer = null,
     deleteBtn = document.createElement("div"),
-    btnText = options.btnText || "Delete";
+    btnText = options.btnText || "Delete",
+    touchable = "ontouchstart" in window;
 
   // generic helpers
 
@@ -77,7 +78,7 @@ function SwipeOut(listEl, options) {
   // trap click events on list when delete is shown
   // http://stackoverflow.com/questions/6157486/jquery-trap-all-click-events-before-they-happen
   function onClick(e) {
-    if (swiped) {
+    if (swiped || preventSwipe) {
       e.preventDefault();
       e.stopPropagation();
     }
@@ -95,16 +96,13 @@ function SwipeOut(listEl, options) {
   }
 
   function onTouchStart(e) {
+    preventSwipe = false;
     if (swiped && e.target !== deleteBtn) {
       e.preventDefault();
       e.stopPropagation();
       hideButton();
       preventSwipe = true;
     }
-  }
-
-  function onTouchEnd() {
-    preventSwipe = false;
   }
 
   function onOrientationChange() {
@@ -130,8 +128,11 @@ function SwipeOut(listEl, options) {
 
   function attachEvents() {
     listEl.addEventListener("click", onClick, true);
-    listEl.addEventListener("touchstart", onTouchStart, false);
-    listEl.addEventListener("touchend", onTouchEnd, false);
+    if (touchable) {
+      listEl.addEventListener("touchstart", onTouchStart, false);
+    } else {
+      listEl.addEventListener("mousedown", onTouchStart, false);
+    }
     window.addEventListener("orientationchange", onOrientationChange, false);
     hammer = new Hammer(listEl, {drag_vertical: false});
     hammer.ondragstart = onDragStart;
@@ -141,8 +142,11 @@ function SwipeOut(listEl, options) {
     removeElement(deleteBtn);
     hammer.destroy();
     window.removeEventListener("orientationchange", onOrientationChange, false);
-    listEl.removeEventListener("touchend", onTouchEnd, false);
-    listEl.removeEventListener("touchstart", onTouchStart, false);
+    if (touchable) {
+      listEl.removeEventListener("touchstart", onTouchStart, false);
+    } else {
+      listEl.removeEventListener("mousedown", onTouchStart, false);
+    }
     listEl.removeEventListener("click", onClick, true);
   }
 
