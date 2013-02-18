@@ -58,7 +58,10 @@ The delete button is unstyled by default.  Give it a custom style, like an iOS t
   padding: 6px 8px;
   border-radius: 6px;
   border: solid 1px rgb(96,23,18);
+  background-image: linear-gradient(top, rgb(242,153,157), rgb(213,62,41));
   background-image: -webkit-linear-gradient(top, rgb(242,153,157), rgb(213,62,41));
+  background-image: -moz-linear-gradient(top, rgb(242,153,157), rgb(213,62,41));
+  background-image: -o-linear-gradient(top, rgb(242,153,157), rgb(213,62,41));
   text-shadow: 0em -0.1em rgb(51,51,51);
   color: #fff;
   font: bold 14px/20px "Helvetica Neue", Arial, Helvetica, sans-serif;
