@@ -57,10 +57,17 @@ function SwipeOut(listEl, options) {
     return currentEl;
   }
 
+  function transform(style) {
+    deleteBtn.style.transform = style;
+    deleteBtn.style.webkitTransform = style; // use 3d for hardware acceleration
+    deleteBtn.style.mozTransform = style;
+    deleteBtn.style.oTransform = style;
+  }
+
   function hideButton() {
     swiped = false;
     deleteBtn.style.opacity = 0;
-    deleteBtn.style.webkitTransform = "translate3d(20px,0,0)";
+    transform("translate3d(20px,0,0)");
   }
 
   function centerButton() {
@@ -70,7 +77,7 @@ function SwipeOut(listEl, options) {
   function showButton() {
     centerButton();
     deleteBtn.style.opacity = 1;
-    deleteBtn.style.webkitTransform = "translate3d(0,0,0)"; // use 3d for hardware acceleration
+    transform("translate3d(0,0,0)");
   }
 
   // events
@@ -156,7 +163,10 @@ function SwipeOut(listEl, options) {
   // style button
   deleteBtn.style.position = "absolute";
   deleteBtn.style.right = "6px";
+  deleteBtn.style.transition = "transform 0.25s ease-in-out, opacity 0.25s ease-in-out";
   deleteBtn.style.webkitTransition = "-webkit-transform 0.25s ease-in-out, opacity 0.25s ease-in-out";
+  deleteBtn.style.mozTransition = "-moz-transform 0.25s ease-in-out, opacity 0.25s ease-in-out";
+  deleteBtn.style.oTransition = "-o-transform 0.25s ease-in-out, opacity 0.25s ease-in-out";
   hideButton();
   addClass(deleteBtn, "delete-btn");
 
