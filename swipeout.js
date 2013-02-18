@@ -59,7 +59,7 @@ function SwipeOut(listEl, options) {
 
   function transform(style) {
     deleteBtn.style.transform = style;
-    deleteBtn.style.webkitTransform = style; // use 3d for hardware acceleration
+    deleteBtn.style.webkitTransform = style;
     deleteBtn.style.mozTransform = style;
     deleteBtn.style.oTransform = style;
   }
@@ -67,7 +67,7 @@ function SwipeOut(listEl, options) {
   function hideButton() {
     swiped = false;
     deleteBtn.style.opacity = 0;
-    transform("translate3d(20px,0,0)");
+    transform("translate3d(20px,0,0)"); // use 3d for hardware acceleration
   }
 
   function centerButton() {
