@@ -14,11 +14,11 @@ function SwipeOut(listEl, options) {
   options = options || {};
 
   var swiped = false,
-    preventSwipe = false,
-    hammer = null,
-    deleteBtn = document.createElement("div"),
-    btnText = options.btnText || "Delete",
-    touchable = "ontouchstart" in window;
+      preventSwipe = false,
+      hammer = null,
+      deleteBtn = document.createElement("div"),
+      btnText = options.btnText || "Delete",
+      keepOnDelete = options.keepOnDelete === true;
 
   // generic helpers
 
@@ -57,17 +57,10 @@ function SwipeOut(listEl, options) {
     return currentEl;
   }
 
-  function transform(style) {
-    deleteBtn.style.transform = style;
-    deleteBtn.style.webkitTransform = style;
-    deleteBtn.style.mozTransform = style;
-    deleteBtn.style.oTransform = style;
-  }
-
   function hideButton() {
     swiped = false;
     deleteBtn.style.opacity = 0;
-    transform("translate3d(20px,0,0)"); // use 3d for hardware acceleration
+    deleteBtn.style.webkitTransform = "translate3d(20px,0,0)";
   }
 
   function centerButton() {
@@ -77,7 +70,7 @@ function SwipeOut(listEl, options) {
   function showButton() {
     centerButton();
     deleteBtn.style.opacity = 1;
-    transform("translate3d(0,0,0)");
+    deleteBtn.style.webkitTransform = "translate3d(0,0,0)"; // use 3d for hardware acceleration
   }
 
   // events
@@ -97,18 +90,11 @@ function SwipeOut(listEl, options) {
       event.initEvent("delete", true, true, null, null, null, null, null, null, null, null, null, null, null, null);
       li.dispatchEvent(event);
 
-      removeElement(li);
-      hideButton();
-    }
-  }
+      if (!keepOnDelete) {
+        removeElement(li);
+      }
 
-  function onTouchStart(e) {
-    preventSwipe = false;
-    if (swiped && e.target !== deleteBtn) {
-      e.preventDefault();
-      e.stopPropagation();
       hideButton();
-      preventSwipe = true;
     }
   }
 
@@ -116,14 +102,14 @@ function SwipeOut(listEl, options) {
     centerButton();
   }
 
-  function onDragStart(e) {
+  function onSwipe(e) {
     if (!preventSwipe) {
       if (swiped) {
         hideButton();
       } else {
         // add delete button
         swiped = true;
-        var li = findListItemNode(e.originalEvent.target);
+        var li = findListItemNode(e.target);
         removeElement(deleteBtn);
         li.appendChild(deleteBtn);
         showButton(deleteBtn);
@@ -135,25 +121,14 @@ function SwipeOut(listEl, options) {
 
   function attachEvents() {
     listEl.addEventListener("click", onClick, true);
-    if (touchable) {
-      listEl.addEventListener("touchstart", onTouchStart, false);
-    } else {
-      listEl.addEventListener("mousedown", onTouchStart, false);
-    }
     window.addEventListener("orientationchange", onOrientationChange, false);
-    hammer = new Hammer(listEl, {drag_vertical: false});
-    hammer.ondragstart = onDragStart;
+    hammer = Hammer(listEl, {drag: false, hold: false, tap: false, touch: false, transform: false}).on('swipeleft swiperight', onSwipe);
   }
 
   function detachEvents() {
     removeElement(deleteBtn);
-    hammer.destroy();
+    hammer.off('swipeleft swiperight');
     window.removeEventListener("orientationchange", onOrientationChange, false);
-    if (touchable) {
-      listEl.removeEventListener("touchstart", onTouchStart, false);
-    } else {
-      listEl.removeEventListener("mousedown", onTouchStart, false);
-    }
     listEl.removeEventListener("click", onClick, true);
   }
 
@@ -163,10 +138,7 @@ function SwipeOut(listEl, options) {
   // style button
   deleteBtn.style.position = "absolute";
   deleteBtn.style.right = "6px";
-  deleteBtn.style.transition = "transform 0.25s ease-in-out, opacity 0.25s ease-in-out";
   deleteBtn.style.webkitTransition = "-webkit-transform 0.25s ease-in-out, opacity 0.25s ease-in-out";
-  deleteBtn.style.mozTransition = "-moz-transform 0.25s ease-in-out, opacity 0.25s ease-in-out";
-  deleteBtn.style.oTransition = "-o-transform 0.25s ease-in-out, opacity 0.25s ease-in-out";
   hideButton();
   addClass(deleteBtn, "delete-btn");
 
