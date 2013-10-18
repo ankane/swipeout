@@ -18,7 +18,7 @@ function SwipeOut(listEl, options) {
     hammer = null,
     deleteBtn = document.createElement("div"),
     btnText = options.btnText || "Delete",
-	direction = options.direction || "right",
+	direction = options.direction || "all",
     touchable = "ontouchstart" in window;
 
   // generic helpers
@@ -122,7 +122,7 @@ function SwipeOut(listEl, options) {
         hideButton();
       } else {
       	// add delete button
-      	if (e.gesture.direction == direction) {
+      	if (e.gesture.direction == direction || direction === "all") {
       		swiped = true;
       		var li = findListItemNode(e.target);
       		removeElement(deleteBtn);
