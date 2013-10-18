@@ -90,7 +90,7 @@ function SwipeOut(listEl, options) {
       e.preventDefault();
       e.stopPropagation();
     }
-    if (swiped && e.target === deleteBtn) {
+    if (swiped) {
       var li = findListItemNode(e.target),
         event = document.createEvent("Events");
 
@@ -121,14 +121,16 @@ function SwipeOut(listEl, options) {
       if (swiped) {
         hideButton();
       } else {
-        // add delete button
-        swiped = true;
-        var li = findListItemNode(e.target);
-        removeElement(deleteBtn);
-        if (li.getElementsByClassName("delete-btn").length == 0) {
-        	li.appendChild(deleteBtn);
-        	showButton(deleteBtn);
-        }
+      	// add delete button
+      	if (e.gesture.direction == direction) {
+      		swiped = true;
+      		var li = findListItemNode(e.target);
+      		removeElement(deleteBtn);
+      		if (li.getElementsByClassName("delete-btn").length == 0) {
+      			li.appendChild(deleteBtn);
+      			showButton(deleteBtn);
+      		}
+      	}
       }
     }
   }
@@ -136,7 +138,7 @@ function SwipeOut(listEl, options) {
   // attach / detach events
 
   function attachEvents() {
-    listEl.addEventListener("click", onClick, true);
+    deleteBtn.addEventListener("click", onClick, true);
     if (touchable) {
       listEl.addEventListener("touchstart", onTouchStart, false);
     } else {
@@ -144,9 +146,7 @@ function SwipeOut(listEl, options) {
     }
     window.addEventListener("orientationchange", onOrientationChange, false);
     hammer = new Hammer(listEl, { drag_block_vertical: false });
-    hammer.on("dragstart", function (event) {
-    	onDragStart(event);
-    });
+    hammer.on("dragstart", onDragStart);
   }
 
   function detachEvents() {
