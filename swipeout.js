@@ -98,7 +98,6 @@ function SwipeOut(listEl, options) {
       event.initEvent("delete", true, true, null, null, null, null, null, null, null, null, null, null, null, null);
       li.dispatchEvent(event);
 
-      removeElement(li);
       hideButton();
     }
   }
@@ -124,7 +123,7 @@ function SwipeOut(listEl, options) {
       } else {
         // add delete button
         swiped = true;
-        var li = findListItemNode(e.originalEvent.target);
+        var li = findListItemNode(e.target);
         removeElement(deleteBtn);
         if (li.getElementsByClassName("delete-btn").length == 0) {
         	li.appendChild(deleteBtn);
