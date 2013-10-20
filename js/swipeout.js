@@ -59,7 +59,7 @@ function SwipeOut(listEl, options) {
 
   function transform(style) {
     deleteBtn.style.transform = style;
-    deleteBtn.style.webkitTransform = style; // use 3d for hardware acceleration
+    deleteBtn.style.webkitTransform = style;
     deleteBtn.style.mozTransform = style;
     deleteBtn.style.oTransform = style;
   }
@@ -67,7 +67,7 @@ function SwipeOut(listEl, options) {
   function hideButton() {
     swiped = false;
     deleteBtn.style.opacity = 0;
-    transform("translate3d(20px,0,0)");
+    transform("translate3d(20px,0,0)"); // use 3d for hardware acceleration
   }
 
   function centerButton() {
@@ -123,7 +123,7 @@ function SwipeOut(listEl, options) {
       } else {
         // add delete button
         swiped = true;
-        var li = findListItemNode(e.originalEvent.target);
+        var li = findListItemNode(e.target);
         removeElement(deleteBtn);
         li.appendChild(deleteBtn);
         showButton(deleteBtn);
@@ -141,13 +141,12 @@ function SwipeOut(listEl, options) {
       listEl.addEventListener("mousedown", onTouchStart, false);
     }
     window.addEventListener("orientationchange", onOrientationChange, false);
-    hammer = new Hammer(listEl, {drag_vertical: false});
-    hammer.ondragstart = onDragStart;
+    hammer = Hammer(listEl, {drag_vertical: false}).on("dragstart", onDragStart);
   }
 
   function detachEvents() {
     removeElement(deleteBtn);
-    hammer.destroy();
+    hammer.off("dragstart");
     window.removeEventListener("orientationchange", onOrientationChange, false);
     if (touchable) {
       listEl.removeEventListener("touchstart", onTouchStart, false);
