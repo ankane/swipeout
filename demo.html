@@ -121,6 +121,25 @@
         <p class="muted">Once you're in, you're in. There's no getting out.</p>
       </li>
     </ul>
+	<br />
+	 
+	<p>Remove the following list items by swiping right. (to support only one direction use the option 'direction')</p>
+	<hr />
+
+	<ul id="anotherlist">
+      <li>
+        <div class="date">Today</div>
+        <h1>A random guy</h1>
+        <p>with an line</p>
+        <p class="muted">and another one.</p>
+      </li>
+      <li>
+        <div class="date">Today</div>
+        <h1>A random guy playing music</h1>
+        <p>with a song</p>
+        <p class="muted">and a line.</p>
+      </li>
+    </ul>
 
     <!-- fastclick -->
     <script src="js/fastclick.js"></script>
@@ -132,7 +151,8 @@
     <script src="js/hammer.js"></script>
     <script src="js/swipeout.js"></script>
     <script>
-      new SwipeOut(document.getElementById("list"));
+    	new SwipeOut(document.getElementById("list"));
+    	new SwipeOut(document.getElementById("anotherlist"), {direction: "right"});
     </script>
 
     <!-- your custom code to handle events -->
@@ -143,6 +163,12 @@
         $events.text("CLICKED " + $("h1", e.currentTarget).text()).removeClass().addClass("click");
       }).on("delete", "li", function(e) {
         $events.text("DELETED " + $("h1", e.currentTarget).text()).removeClass().addClass("delete");
+      });
+
+      $("#anotherlist").on("click", "li", function (e) {
+      	$events.text("CLICKED " + $("h1", e.currentTarget).text()).removeClass().addClass("click");
+      }).on("delete", "li", function (e) {
+      	$events.text("DELETED " + $("h1", e.currentTarget).text()).removeClass().addClass("delete");
       });
     </script>
   </body>

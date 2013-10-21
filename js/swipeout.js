@@ -1,6 +1,6 @@
 /*
  * SwipeOut
- * version 0.1.0
+ * version 0.2.1
  * https://github.com/ankane/swipeout
  * Licensed under the MIT license.
  */
@@ -18,6 +18,7 @@ function SwipeOut(listEl, options) {
     hammer = null,
     deleteBtn = document.createElement("div"),
     btnText = options.btnText || "Delete",
+	direction = options.direction || "all",
     touchable = "ontouchstart" in window;
 
   // generic helpers
@@ -125,8 +126,10 @@ function SwipeOut(listEl, options) {
         swiped = true;
         var li = findListItemNode(e.target);
         removeElement(deleteBtn);
-        li.appendChild(deleteBtn);
-        showButton(deleteBtn);
+        if (direction === "all" || e.gesture.direction == direction) {
+        	li.appendChild(deleteBtn);
+        	showButton(deleteBtn);
+        }
       }
     }
   }
