@@ -117,16 +117,19 @@ function SwipeOut(listEl, options) {
   }
 
   function onDragStart(e) {
-    if (!preventSwipe) {
-      if (swiped) {
-        hideButton();
-      } else {
-        // add delete button
-        swiped = true;
-        var li = findListItemNode(e.target);
-        removeElement(deleteBtn);
-        li.appendChild(deleteBtn);
-        showButton(deleteBtn);
+    var direction = e.gesture.direction;
+    if (direction == Hammer.DIRECTION_LEFT || direction == Hammer.DIRECTION_RIGHT) {
+      if (!preventSwipe) {
+        if (swiped) {
+          hideButton();
+        } else {
+          // add delete button
+          swiped = true;
+          var li = findListItemNode(e.target);
+          removeElement(deleteBtn);
+          li.appendChild(deleteBtn);
+          showButton(deleteBtn);
+        }
       }
     }
   }
@@ -141,7 +144,7 @@ function SwipeOut(listEl, options) {
       listEl.addEventListener("mousedown", onTouchStart, false);
     }
     window.addEventListener("orientationchange", onOrientationChange, false);
-    hammer = Hammer(listEl, {drag_vertical: false}).on("dragstart", onDragStart);
+    hammer = Hammer(listEl).on("dragstart", onDragStart);
   }
 
   function detachEvents() {
