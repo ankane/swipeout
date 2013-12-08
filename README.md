@@ -76,11 +76,11 @@ new SwipeOut(list, {btnText: "Remove"}); // default: "Delete"
 
 ## Bonus
 
-To remove the 300ms delay for *all clicks* on mobile Safari, we recommend [FastClick](https://github.com/ftlabs/fastclick).
+To remove the 300 ms delay for *all clicks* on mobile Safari, we recommend [FastClick](https://github.com/ftlabs/fastclick).
 
 ```html
 <script src="path/to/fastclick.js"></script>
 <script>
-  new FastClick(document.body);
+  FastClick.attach(document.body);
 </script>
 ```
