@@ -1,14 +1,14 @@
-# SwipeOut :surfer:
+# SwipeOut
 
-Swipe-to-delete goodness for the mobile web
-
-Handcrafted at [Instacart](https://www.instacart.com/)
+:surfer: Swipe-to-delete goodness for the mobile web
 
 [View demo](http://ankane.github.com/swipeout/demo.html)
 
+Handcrafted at [Instacart](https://www.instacart.com/)
+
 ## Usage
 
-### It's easy to get started
+### It’s easy to get started
 
 Instantiate SwipeOut on a `<ul>` or `<ol>` element.
 
