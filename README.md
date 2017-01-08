@@ -4,7 +4,7 @@
 
 [View demo](http://ankane.github.com/swipeout/demo.html)
 
-Handcrafted at [Instacart](https://www.instacart.com/)
+:tangerine: Battle-tested at [Instacart](https://www.instacart.com/opensource)
 
 ## Usage
 
