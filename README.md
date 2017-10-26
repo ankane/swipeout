@@ -73,14 +73,3 @@ The delete button text can be set with:
 ```javascript
 new SwipeOut(list, {btnText: "Remove"}); // default: "Delete"
 ```
-
-## Bonus
-
-To remove the 300 ms delay for *all clicks* on mobile Safari, we recommend [FastClick](https://github.com/ftlabs/fastclick).
-
-```html
-<script src="path/to/fastclick.js"></script>
-<script>
-  FastClick.attach(document.body);
-</script>
-```
