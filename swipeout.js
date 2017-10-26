@@ -146,7 +146,7 @@ function SwipeOut(listEl, options) {
 
   function detachEvents() {
     removeElement(deleteBtn);
-    hammer.off("dragstart");
+    hammer.off("swipe");
     window.removeEventListener("orientationchange", onOrientationChange, false);
     if (touchable) {
       listEl.removeEventListener("touchstart", onTouchStart, false);
