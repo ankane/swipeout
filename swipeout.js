@@ -117,19 +117,16 @@ function SwipeOut(listEl, options) {
   }
 
   function onDragStart(e) {
-    var direction = e.gesture.direction;
-    if (direction == Hammer.DIRECTION_LEFT || direction == Hammer.DIRECTION_RIGHT) {
-      if (!preventSwipe) {
-        if (swiped) {
-          hideButton();
-        } else {
-          // add delete button
-          swiped = true;
-          var li = findListItemNode(e.target);
-          removeElement(deleteBtn);
-          li.appendChild(deleteBtn);
-          showButton(deleteBtn);
-        }
+    if (!preventSwipe) {
+      if (swiped) {
+        hideButton();
+      } else {
+        // add delete button
+        swiped = true;
+        var li = findListItemNode(e.target);
+        removeElement(deleteBtn);
+        li.appendChild(deleteBtn);
+        showButton(deleteBtn);
       }
     }
   }
