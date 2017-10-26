@@ -141,7 +141,7 @@ function SwipeOut(listEl, options) {
       listEl.addEventListener("mousedown", onTouchStart, false);
     }
     window.addEventListener("orientationchange", onOrientationChange, false);
-    hammer = Hammer(listEl, {drag_vertical: false}).on("dragstart", onDragStart);
+    hammer = Hammer(listEl).on("swipe", onDragStart);
   }
 
   function detachEvents() {

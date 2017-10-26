@@ -122,21 +122,15 @@
       </li>
     </ul>
 
-    <!-- fastclick -->
-    <script src="js/fastclick.js"></script>
-    <script>
-      new FastClick(document.body);
-    </script>
-
     <!-- swipeout and dependencies -->
-    <script src="js/hammer.js"></script>
+    <script src="js/hammer.min.js"></script>
     <script src="js/swipeout.js"></script>
     <script>
       new SwipeOut(document.getElementById("list"));
     </script>
 
     <!-- your custom code to handle events -->
-    <script src="js/zepto.js"></script>
+    <script src="js/zepto.min.js"></script>
     <script>
       $events = $("#events");
       $("#list").on("click", "li", function(e) {
