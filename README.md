@@ -2,7 +2,7 @@
 
 :surfer: Swipe-to-delete goodness for the mobile web
 
-[View demo](http://ankane.github.com/swipeout/demo.html)
+[View demo](https://ankane.github.com/swipeout/demo.html)
 
 :tangerine: Battle-tested at [Instacart](https://www.instacart.com/opensource)
 
@@ -38,7 +38,7 @@ $("#list li").on("delete", function(evt) {
 
 ## Install
 
-SwipeOut requires [Hammer.js](http://eightmedia.github.com/hammer.js/).  Include the following two files on your website:
+SwipeOut requires [Hammer.js](https://eightmedia.github.com/hammer.js/).  Include the following two files on your website:
 
 [Hammer.js](https://raw.github.com/EightMedia/hammer.js/master/hammer.js) and [SwipeOut](https://raw.github.com/ankane/swipeout/master/swipeout.js)
 

@@ -22,7 +22,7 @@ function SwipeOut(listEl, options) {
 
   // generic helpers
 
-  // http://stackoverflow.com/questions/195951/change-an-elements-css-class-with-javascript
+  // https://stackoverflow.com/questions/195951/change-an-elements-css-class-with-javascript
   function addClass(el, cssClass) {
     el.className += (" " + cssClass);
   }
@@ -83,7 +83,7 @@ function SwipeOut(listEl, options) {
   // events
 
   // trap click events on list when delete is shown
-  // http://stackoverflow.com/questions/6157486/jquery-trap-all-click-events-before-they-happen
+  // https://stackoverflow.com/questions/6157486/jquery-trap-all-click-events-before-they-happen
   function onClick(e) {
     if (swiped || preventSwipe) {
       e.preventDefault();
