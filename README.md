@@ -2,7 +2,7 @@
 
 :surfer: Swipe-to-delete goodness for the mobile web
 
-[View demo](https://ankane.github.com/swipeout/demo.html)
+[View demo](https://ankane.github.io/swipeout/demo.html)
 
 :tangerine: Battle-tested at [Instacart](https://www.instacart.com/opensource)
 
